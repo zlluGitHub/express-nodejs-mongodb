@@ -11,8 +11,18 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
+// //设置允许跨域访问该服务
+// let cors = require('cors');
+// app.use(cors({
+//     origin:['http://zhenglinglu.cn','https://zhenglinglu.cn','http://wry520.cn','http://www.zhenglinglu.cn','https://www.zhenglinglu.cn','http://localhost:10086','http://127.0.0.1:8080'],
+//     // methods:['GET','POST'],
+//     // alloweHeaders:['Conten-Type', 'Authorization']
+// }));
+
 //解决跨域
 app.all('*', function (req, res, next) {
+  // res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8080');
+  // res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization,Origin,Accept,X-Requested-With');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
